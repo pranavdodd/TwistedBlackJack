@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Twisted Blackjack</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-container">
+    <h1>Twisted Blackjack</h1>
+    
+    <div class="section">
+      <h2>Your Hand</h2>
+      <div id="player-hand" class="hand"></div>
+      <p id="player-total"></p>
+    </div>
+
+    <div class="section">
+      <h2>Dealer's Hand</h2>
+      <p>Face-Up: <span id="dealer-up-card"></span></p>
+      <p>Dealer says the hidden card is: <span id="dealer-lie"></span></p>
+      <div id="dealer-hand" class="hand"></div>
+      <p id="dealer-total"></p>
+    </div>
+
+    
+
+    <p id="result"></p>
+<div class="controls">
+  <button onclick="hit()">Hit</button>
+  <button onclick="stand()">Stand</button>
+  <button onclick="scan()">Scan Truth</button>
+  <button id="next-game" onclick="startGame()" style="display:none;">Next Game</button>
+</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
