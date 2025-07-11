@@ -23,10 +23,22 @@ function calculateTotal(hand) {
 }
 
 function startGame() {
+  // Reset visual elements
   document.getElementById("result").innerText = "";
   document.getElementById("next-game").style.display = "none";
-  document.querySelectorAll(".controls button").forEach(btn => btn.disabled = false);
+  document.getElementById("player-hand").innerHTML = "";
+  document.getElementById("dealer-hand").innerHTML = "";
+  document.getElementById("player-total").innerText = "";
+  document.getElementById("dealer-total").innerText = "";
+  document.getElementById("dealer-up-card").innerText = "";
+  document.getElementById("dealer-lie").innerText = "";
 
+  // Enable buttons
+  document.querySelectorAll(".controls button").forEach(btn => {
+    if (btn.id !== "next-game") btn.disabled = false;
+  });
+
+  // Reset state
   scanned = false;
   createDeck();
   playerHand = [deck.pop(), deck.pop()];
@@ -115,8 +127,25 @@ function scan() {
 
 function endGame(msg) {
   document.getElementById("result").innerText = msg;
-  document.querySelectorAll(".controls button").forEach(btn => btn.disabled = true);
-  document.getElementById("next-game").style.display = "inline-block";
+
+  // Disable everything *except* the Next Game button
+  document.querySelectorAll(".controls button").forEach(btn => {
+    if (btn.id !== "next-game") btn.disabled = true;
+  });
+
+  // Show and enable Next Game
+  const nextBtn = document.getElementById("next-game");
+  nextBtn.style.display = "inline-block";
+  nextBtn.disabled = false;
 }
 
-window.onload = startGame;
+
+window.onload = function () {
+  // 1) Hook the Next Game button once
+  document.getElementById("next-game")
+    .addEventListener("click", startGame);
+
+  // 2) Kick off the very first deal
+  startGame();
+};
+
