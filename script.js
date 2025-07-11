@@ -23,7 +23,6 @@ function calculateTotal(hand) {
 }
 
 function startGame() {
-  // Reset visual elements
   document.getElementById("result").innerText = "";
   document.getElementById("next-game").style.display = "none";
   document.getElementById("player-hand").innerHTML = "";
@@ -33,12 +32,10 @@ function startGame() {
   document.getElementById("dealer-up-card").innerText = "";
   document.getElementById("dealer-lie").innerText = "";
 
-  // Enable buttons
   document.querySelectorAll(".controls button").forEach(btn => {
     if (btn.id !== "next-game") btn.disabled = false;
   });
 
-  // Reset state
   scanned = false;
   createDeck();
   playerHand = [deck.pop(), deck.pop()];
@@ -127,13 +124,11 @@ function scan() {
 
 function endGame(msg) {
   document.getElementById("result").innerText = msg;
-
-  // Disable everything *except* the Next Game button
   document.querySelectorAll(".controls button").forEach(btn => {
     if (btn.id !== "next-game") btn.disabled = true;
   });
 
-  // Show and enable Next Game
+  //next game button
   const nextBtn = document.getElementById("next-game");
   nextBtn.style.display = "inline-block";
   nextBtn.disabled = false;
@@ -141,11 +136,9 @@ function endGame(msg) {
 
 
 window.onload = function () {
-  // 1) Hook the Next Game button once
   document.getElementById("next-game")
     .addEventListener("click", startGame);
 
-  // 2) Kick off the very first deal
   startGame();
 };
 
