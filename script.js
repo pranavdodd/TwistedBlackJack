@@ -128,7 +128,6 @@ function endGame(msg) {
     if (btn.id !== "next-game") btn.disabled = true;
   });
 
-  //next game button
   const nextBtn = document.getElementById("next-game");
   nextBtn.style.display = "inline-block";
   nextBtn.disabled = false;
