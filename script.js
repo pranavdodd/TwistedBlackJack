@@ -114,12 +114,15 @@ function stand() {
 }
 
 function scan() {
-  if (scanned) {
-    alert("You've already used your scan.");
-    return;
-  }
+  if (scanned) return;
   scanned = true;
-  alert(`Truth Scan: The dealer's real face-down card is ${dealerHand[1]}.`);
+  const realCard = dealerHand[1];
+  const msgDiv = document.getElementById("truth-scan-message");
+  msgDiv.textContent = `🔍 Truth Scan: Dealer’s hidden card is ${realCard}`;
+  msgDiv.style.display = "block";
+  setTimeout(() => {
+    msgDiv.style.display = "none";
+  }, 3000);
 }
 
 function endGame(msg) {
@@ -133,11 +136,9 @@ function endGame(msg) {
   nextBtn.disabled = false;
 }
 
-
 window.onload = function () {
   document.getElementById("next-game")
     .addEventListener("click", startGame);
 
   startGame();
 };
-
